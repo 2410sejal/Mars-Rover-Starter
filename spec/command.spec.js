@@ -6,7 +6,18 @@ const Command = require('../command.js');
 describe("Command class", function() {
 
   it("throws error if command type is NOT passed into constructor as the first parameter", function() {
-    expect( function() { new Command();}).toThrow(new Error('Command type required.'));
+    expect(function(){new Command();}).toThrow(new Error('Command type required.'));    
   });
 
+  it("constructor sets command type",function() {
+    let testcommand = new Command("MOVE");
+    expect(testcommand.commandType).toEqual("MOVE");
+    // expect(testcommand).toHaveProperty('commandType',"MOVE");
+  });
+
+  it("constructor sets a value passed in as the 2nd argument", function (){
+    let testcommand = new Command("MOVE",100);
+    expect(testcommand.value).toEqual(100);
+    // expect(testcommand).toHaveProperty("value",100);
+  });
 });
